@@ -57,3 +57,4 @@ export default class SelectLocationScreen extends React.Component {
 | buttonStyle | object | No |
 | textStyle | object | No |
 | onLocationSelect | function | No |
+| minZoomLevel | number | No |
