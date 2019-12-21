@@ -39,6 +39,7 @@ export default class SelectLocationScreen extends React.Component {
             latitude: 37.78825,
             longitude: -122.4324,
           }}
+          minZoomLevel={0}
           onLocationSelect={({latitude, longitude})=>console.log(longitude)}
         />
       </View>
