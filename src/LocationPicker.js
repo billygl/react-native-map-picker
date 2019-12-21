@@ -15,7 +15,8 @@ export default class LocationPicker extends Component {
         buttonText: PropTypes.string,
         buttonStyle: PropTypes.object,
         textStyle: PropTypes.object,
-        onLocationSelect: PropTypes.func
+        onLocationSelect: PropTypes.func,
+        minZoomLevel: PropTypes.number
     }
 
     static defaultProps = {
@@ -23,6 +24,7 @@ export default class LocationPicker extends Component {
         buttonStyle: {},
         textStyle: {},
         onLocationSelect: (coordinates) => ({}),
+        minZoomLevel: 16
     }
 
     state = {
@@ -138,7 +140,7 @@ export default class LocationPicker extends Component {
                         provider={PROVIDER_GOOGLE}
                         style={styles.mapView}
                         initialRegion={this.state.coordinate}
-                        minZoomLevel={16}
+                        minZoomLevel={this.props.minZoomLevel}
                         onPress={this.onMapPress}
                         {...props}>
                         <Marker draggable
