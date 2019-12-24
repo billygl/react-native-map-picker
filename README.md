@@ -12,9 +12,10 @@ Or if you are using yarn
 
 ```yarn add react-native-map-picker```
 
-This library depends upon a native libraries
+This library depends upon native libraries
 
 1. [react-native-maps](https://github.com/react-community/react-native-maps)
+2. [@react-native-community/geolocation](https://github.com/react-native-community/react-native-geolocation)
 
 Make sure to install them before you install react-native-location-picker
 

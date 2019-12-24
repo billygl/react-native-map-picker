@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Geolocation from '@react-native-community/geolocation';
 import PropTypes from 'prop-types'
 import { ActivityIndicator, TouchableOpacity, View, Text, Platform, PermissionsAndroid } from 'react-native'
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
@@ -95,7 +96,7 @@ export default class LocationPicker extends Component {
     }
 
     _getCurrentLocation = () => {
-        navigator.geolocation.getCurrentPosition(
+        Geolocation.getCurrentPosition(
             (position) => {
                 this.setPosition(position.coords)
             },
