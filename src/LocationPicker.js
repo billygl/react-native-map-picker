@@ -44,6 +44,15 @@ export default class LocationPicker extends Component {
             this.getCurrentPosition()
     }
 
+    componentDidUpdate ( prevProps ) {        
+        if (prevProps.initialCoordinate != this.props.initialCoordinate){
+            const {initialCoordinate} = this.props
+            if (initialCoordinate){
+                this.setPosition(initialCoordinate)
+            }
+        }
+    }
+
     setPosition = ({latitude, longitude}) => {
         this.setState({
             loading: false,
@@ -139,7 +148,7 @@ export default class LocationPicker extends Component {
                     <MapView
                         provider={PROVIDER_GOOGLE}
                         style={styles.mapView}
-                        initialRegion={this.state.coordinate}
+                        region={this.state.coordinate}
                         minZoomLevel={this.props.minZoomLevel}
                         onPress={this.onMapPress}
                         {...props}>
