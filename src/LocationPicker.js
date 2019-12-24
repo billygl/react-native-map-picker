@@ -30,6 +30,7 @@ export default class LocationPicker extends Component {
 
     state = {
         loading: true,
+        delta: DEFAULT_DELTA,
         coordinate: {
             ...DEFAULT_DELTA,
             ...this.props.initialCoordinate
@@ -58,7 +59,7 @@ export default class LocationPicker extends Component {
         this.setState({
             loading: false,
             coordinate: {
-                ...DEFAULT_DELTA,
+                ...this.state.delta,
                 latitude,
                 longitude
             },
@@ -115,6 +116,16 @@ export default class LocationPicker extends Component {
         }
     }
 
+    onRegionChangeComplete = (region) => {
+        this.setState({
+            delta: {
+                latitudeDelta: region.latitudeDelta, 
+                longitudeDelta: region.longitudeDelta
+            },
+            coordinate: region,
+        })
+    }
+
     onMarkerDragEnd = (e) => {
         const {coordinate} = e.nativeEvent
         this.setPosition(coordinate)
@@ -150,6 +161,7 @@ export default class LocationPicker extends Component {
                         provider={PROVIDER_GOOGLE}
                         style={styles.mapView}
                         region={this.state.coordinate}
+                        onRegionChangeComplete={this.onRegionChangeComplete}
                         minZoomLevel={this.props.minZoomLevel}
                         onPress={this.onMapPress}
                         {...props}>
