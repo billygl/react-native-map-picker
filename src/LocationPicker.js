@@ -99,6 +99,9 @@ export default class LocationPicker extends Component {
     _getCurrentLocation = () => {
         Geolocation.getCurrentPosition(
             (position) => {
+                if (this.props.initialCoordinate) {
+                    return
+                }
                 this.setPosition(position.coords)
             },
             (error) => {
